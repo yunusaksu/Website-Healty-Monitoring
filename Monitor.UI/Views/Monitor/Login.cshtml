@@ -1,0 +1,43 @@
+﻿@model Monitor.UI.Models.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content2/css/style.css" rel="stylesheet" />
+    <link href="~/Content2/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/table-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-reset.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body>
+    <br />
+    <div class="panel">
+        <div class="panel-body">
+            @using (Html.BeginForm("Login", "Monitor", FormMethod.Post))
+            {
+                <form class="form-inline">
+                    <table>
+                        <tr><td>@Html.LabelFor(model => model.EMail)</td><td>@Html.EditorFor(model => model.EMail)</td></tr>
+                        <tr><td></td><td>@Html.ValidationMessageFor(model => model.EMail)</td></tr>
+                        <tr><td>@Html.LabelFor(model => model.Password)</td><td>@Html.EditorFor(model => model.Password)</td></tr>
+                        <tr><td></td><td>@Html.ValidationMessageFor(model => model.Password)</td></tr>
+                        <tr><td colspan="2"><label>@Html.DisplayFor(model => Model.LoginErrorMessage)</label></td></tr>
+                        <tr><td></td><td><input type="submit" class="btn btn-send" value="Login" /></td></tr>
+                    </table>
+                </form><br />
+                @Html.ActionLink("Kayıt Ol", "Register", "Monitor")}
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+﻿@using Monitor.UI.Models
+@model RegisterModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content2/css/style.css" rel="stylesheet" />
+    <link href="~/Content2/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/table-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-reset.css" rel="stylesheet" />
+    <title>Register</title>
+</head>
+<body>
+    <div class="panel-heading border-top"><H3>KAYIT OL</H3></div><div class="form-body">
+    @using (Html.BeginForm("Register", "Monitor", FormMethod.Post))
+    {
+        <table class="form-group">
+            <tr><td>@Html.LabelFor(model => model.Name)</td><td>@Html.EditorFor(model => model.Name)</td></tr>
+            <tr><td></td><td>@Html.ValidationMessageFor(model => model.Name)</td></tr>
+            <tr><td>@Html.LabelFor(model => model.Email)</td><td>@Html.EditorFor(model => model.Email)</td></tr>
+            <tr><td></td><td>@Html.ValidationMessageFor(model => model.Email)</td></tr>
+            <tr><td>@Html.LabelFor(model => model.Password)</td><td>@Html.EditorFor(model => model.Password)</td></tr>
+            <tr><td></td><td>@Html.ValidationMessageFor(model => model.Password)</td></tr>
+            <tr><td colspan="2"><label>@Html.DisplayFor(model => model.RegisterErrorMessage)</label></td></tr>
+            <tr><td></td><td><input type="submit" class="btn-info" value="Register" /></td></tr>
+        </table>}
+</div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script><script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

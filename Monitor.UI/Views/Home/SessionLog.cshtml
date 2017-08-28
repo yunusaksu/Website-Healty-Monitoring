@@ -1,0 +1,75 @@
+﻿
+@using Monitor.Data
+@model IEnumerable<TestResult>
+
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Monitor/Login");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content2/css/style.css" rel="stylesheet" />
+    <link href="~/Content2/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/table-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-reset.css" rel="stylesheet" />
+    <title>Session Log</title>
+</head>
+<body>
+    <header class="panel-heading no-border">
+        LOG SAYFASI
+    </header>
+    <div class="col-md-12">
+        <button onclick="location.href='/Home/TestInsert'" style="background-color:forestgreen; color:white; font-size:22px; float:right; margin-right:0px;position:relative;">Test Ekle</button>
+        <table border="1" cellpadding="5" class="table">
+            <thead>
+                <tr>
+                    <td>Test Adı</td>
+                    <td>URL</td>
+                    <td>Son Test Tarihi</td>
+                    <td>Status Code</td>
+                    <td>Çalışma Durumu</td>
+                </tr>
+            </thead>
+            <tbody>
+                 @foreach (var item in Model)
+                    {
+                <tr>
+                    @if (item.Name == "NULL")
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@item.Name</td>
+                    }
+                    <td>@item.Url</td>
+                    <td>@item.LastTestDate</td>
+                    <td>@item.StatusCode</td>
+
+                    @if (item.StatusCode == 200 || item.StatusCode == 302 || item.StatusCode == 204)
+                    {
+                        <td><center><img src="~/img/basari.png" /></center></td>
+                    }
+                    else
+                    {
+                        <td><center><img src="~/img/basarisiz.png" /></center></td>
+                    }
+                    
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

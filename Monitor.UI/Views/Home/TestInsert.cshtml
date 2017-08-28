@@ -1,0 +1,66 @@
+﻿@model Monitor.UI.Models.TestAddModel
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Monitor/Login");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content2/css/style.css" rel="stylesheet" />
+    <link href="~/Content2/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/table-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-reset.css" rel="stylesheet" />
+    <title>TestInsert</title>
+</head>
+<body>
+    <div>
+        <header class="panel-heading no-border">
+            TEST LİSTESİ
+        </header>
+    </div>
+        @using (Html.BeginForm("TestInsert", "Home", FormMethod.Post))
+        {
+        <table class="panel-body">
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.TestName)
+                </td>
+                <td>
+                    @Html.EditorFor(model=>model.TestName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model=>model.Url)
+                </td>
+                <td>
+                    @Html.EditorFor(model=>model.Url)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model=>model.Url)</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" class="btn btn-login" value="Test Ekle" />
+                </td>
+            </tr>
+        </table>
+        }
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

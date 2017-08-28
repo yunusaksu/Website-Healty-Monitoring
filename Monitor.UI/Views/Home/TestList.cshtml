@@ -1,0 +1,97 @@
+﻿
+@using Monitor.Data
+@model IEnumerable<Test>
+
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Monitor/Register");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content2/css/style.css" rel="stylesheet" />
+    <link href="~/Content2/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/table-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-reset.css" rel="stylesheet" />
+    <title>Test Listesi</title>
+</head>
+<body>
+    <div class="col-sm-12">
+        <header class="panel-heading no-border">
+            TEST LİSTESİ
+        </header>
+            <button onclick="location.href='/Home/TestInsert'" style="background-color:forestgreen; color:white; font-size:22px; float:right; margin-right:0px;position:relative;">Test Ekle</button>
+            <table border="1" cellpadding="5" class="table">
+                <thead>
+                    <tr>
+                        <td>Test Adı</td>
+                        <td>URL</td>
+                        @*<td>Son Test Tarihi</td>
+                        <td>Status Code</td>
+                        <td>Çalışma Durumu</td>*@
+                        <td>Log'a Git</td>
+                        <td>Sil</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (item.Name == null)
+                                {
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td>@item.Name</td>
+                                }
+                                @if (item.Url != null)
+                                {
+                                    <td>@item.Url</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @*<td>@Model.LastTestDate</td>
+                                    <td>@Model.StatusCode</td>
+
+                                    @if (Model.StatusCode == 200 || Model.StatusCode == 302)
+                                    {
+                                        <td><center><img src="~/img/basari.png" /></center></td>
+                                    }
+                                    else
+                                    {
+                                        <td><center><img src="~/img/basarisiz.png" /></center></td>
+                                    }*@
+                                @if (item.ID != null)
+                                {
+                                    <td><a href="/Home/SessionLog/@item.ID">Log'a Git</a></td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td><a href="/Home/UrunSil/@item.ID">Sil</a></td>
+
+                                @*<td><button type="submit" value="Session Log"> Log'a Git</button></td>*@
+                            </tr>
+                        }
+
+                </tbody>
+            </table>
+
+    </div>
+</body>
+</html>

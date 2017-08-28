@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Monitor/Register");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content2/css/style.css" rel="stylesheet" />
+    <link href="~/Content2/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/table-responsive.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content2/css/bootstrap-reset.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="col-md-12">
+        <H1>Hoşgeldin <span style="color:orange;">@Session["UserName"]</span> </H1>
+        <br /> <br />
+        <a href="@Url.Action("TestInsert","Home")"><span style="font-size:large;">Test Ekle</span></a>
+        <a href="@Url.Action("TestList","Home")"><span style="font-size:large;">Test Listesi</span></a>
+        <h3><a href="@Url.Action("LogOut","Monitor")">Oturumu Kapat</a></h3>
+        
+    </div>
+</body>
+</html>
